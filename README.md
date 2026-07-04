@@ -178,7 +178,7 @@ python test_connection.py
 python main.py
 ```
 
-The app will start at: **http://localhost:5000**
+The app will start at: **http://localhost:8000**
 
 ---
 
@@ -186,7 +186,7 @@ The app will start at: **http://localhost:5000**
 
 ### Using the Web Interface
 
-1. **Open Browser**: Navigate to `http://localhost:5000`
+1. **Open Browser**: Navigate to `http://localhost:8000`
 2. **Fill Form**: Enter applicant information in all fields
 3. **Submit**: Click "Get Prediction" button
 4. **View Result**: See Approved ✅ or Rejected ❌
@@ -198,7 +198,7 @@ The app will start at: **http://localhost:5000**
 
 **Request Example**:
 ```bash
-curl -X POST http://localhost:5000/predict \
+curl -X POST http://localhost:8000/predict \
   -H "Content-Type: application/json" \
   -d '{
     "Gender": 1,
@@ -278,7 +278,7 @@ This will:
 |-------|----------|
 | **Models not found error** | Run `python src/train.py` to train and save models |
 | **MongoDB connection failed** | Check `.env` file and verify MongoDB is running |
-| **Port 5000 already in use** | Change port in `main.py`: `app.run(port=5001)` |
+| **Port 8000 already in use** | Change port in `config.py`: `FLASK_PORT = 8001` |
 | **ModuleNotFoundError** | Run `pip install -r requirements.txt` |
 | **Form not submitting** | Open DevTools (F12) → Console for error details |
 | **No background image** | Ensure `static/images/background.jpg` exists |
@@ -291,6 +291,8 @@ This will:
 - Entry point for the Flask application
 - Routes: `/` (form) and `/predict` (API)
 - Loads all models on startup
+- Uses config.py for host and port configuration
+- Runs on `0.0.0.0:8000` (accessible from any network interface)
 
 ### src/prediction.py
 - `CreditCardApproval` class handles predictions
@@ -310,8 +312,10 @@ This will:
 
 ### config.py
 - Configuration from `.env` file
+- Flask host and port settings (FLASK_HOST, FLASK_PORT)
 - Model and encoder file paths
 - Database collection names
+- Centralized configuration management
 
 ### templates/index.html
 - Bootstrap-based responsive form
@@ -448,9 +452,22 @@ Developed as a full-stack machine learning project combining ML model training, 
 
 - [ ] Create `.env` with MongoDB URI
 - [ ] Run `pip install -r requirements.txt`
-- [ ] Verify models exist in `models/` folder
-- [ ] Run `python main.py`
-- [ ] Open `http://localhost:5000` in browser
+- [ ] Verify models exist in 8000` in browser
+- [ ] Test with sample data
+- [ ] Check MongoDB for stored predictions
+
+## ⚙️ Configuration Details
+
+### Flask Server Settings
+- **Host**: `0.0.0.0` (accessible from any network interface)
+- **Port**: `8000`
+- **Debug Mode**: Enabled (for development)
+
+These settings can be customized in `config.py`:
+```python
+FLASK_HOST = "0.0.0.0"  # Change to "127.0.0.1" for localhost only
+FLASK_PORT = 8000       # Change to any available port
+```ser
 - [ ] Test with sample data
 - [ ] Check MongoDB for stored predictions
 

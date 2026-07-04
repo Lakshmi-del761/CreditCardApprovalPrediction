@@ -1,5 +1,7 @@
 import os
 from dotenv import load_dotenv
+FLASK_HOST = "0.0.0.0"
+FLASK_PORT = 8000
 
 load_dotenv()
 

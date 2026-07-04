@@ -23,11 +23,12 @@ def predict():
 
     return jsonify({"prediction": result})
 
-
+import config
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
+    app.run (
+        host=config.FLASK_HOST, 
+        port=config.FLASK_PORT, 
+        debug=True)
 
 
 
