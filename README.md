@@ -1,6 +1,6 @@
 # 💳 Credit Card Approval Prediction
 
-A full-stack machine learning web application that predicts credit card approval using a Random Forest classifier. Built with Flask backend, Bootstrap responsive frontend, and MongoDB database integration.
+This is a full-stack machine learning web application that predicts credit card approval using a Random Forest classifier. Built with Flask backend, Bootstrap responsive frontend, and MongoDB database integration.
 
 ---
 
